@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title></title>
+        <title>bestLife: control youre life</title>
       </Head>
     </div>
   )
