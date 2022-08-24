@@ -3,9 +3,7 @@ import { ApexOptions } from "apexcharts"
 import dynamic from "next/dynamic"
 const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false })
 
-
-
-const SkillsGrow = () => {
+const Obstacles = () => {
     const options: ApexOptions =
     {
         chart: {
@@ -28,14 +26,14 @@ const SkillsGrow = () => {
         fill: {
             type: 'gradient',
             gradient: {
-                shade: '#ea9b08',
+                shade: '#2CE2AA',
                 inverseColors: true,
                 opacityFrom: 1,
                 opacityTo: 1,
                 stops: [0, 50, 100],
             },
         },
-        colors: ['#5E60C7', '#eab908'],
+        colors: ['#2CE2AA', '#eab908'],
         dataLabels: {
             enabled: false,
         },
@@ -79,7 +77,7 @@ const SkillsGrow = () => {
         <div className=" gap-y-3 pt-6 flex flex-col justify-center items-center min-h-[240px] rounded-2xl overflow-hidden shadow-2xl shadow-[#1e2738] bg-[#1f283a] ">
 
             <div className="w-full flex flex-col items-start ">
-                <p className=" text-base text-gray-300 mr-2 font-extrabold self-start">شاخص توانایی‌ها</p>
+                <p className=" text-base text-gray-300 mr-2 font-extrabold self-start">شاخص موانع</p>
                 <p className=" text-[0.5rem] mr-2 text-red-400">به دلیل اینکه هنوز رشدی ندارید <br /> چارت‌ها مقدار تصادفی دارند !</p>
             </div>
             <ReactApexChart options={options} type={'area'} series={series} height={200} width={280} />
@@ -87,4 +85,4 @@ const SkillsGrow = () => {
     )
 }
 
-export default SkillsGrow
+export default Obstacles

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic"
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {ssr:false})
 
 
-const Grows = () => {
+const SourcesGrows = () => {
 
     const options: ApexOptions =
     {
@@ -87,4 +87,4 @@ const Grows = () => {
     )
 }
 
-export default Grows
+export default SourcesGrows

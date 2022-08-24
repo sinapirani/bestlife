@@ -1,16 +1,17 @@
 import Link from "next/link"
-import Grows from "../../components/dashboard/growth/grows"
+import SourcesGrows from "../../components/dashboard/growth/sources"
 import SkillsGrows from '../../components/dashboard/growth/skillsGrow'
+import Obstacles from '../../components/dashboard/growth/Obstacles'
+
 
 
 const Dashboard = () => {
     return (
-        <div className="w-full bg-red-500 min-h-screen max-h-fit pt-6 flex flex-col justify-start items-center ">
-
-            <Grows/>
+        <div className="w-full gap-x-5 flex justify-center items-start min-h-screen pt-6  ">
+            
             <SkillsGrows/>
-            <SkillsGrows/>
-
+            <SourcesGrows/>
+            <Obstacles/>
 
         </div>
     )
