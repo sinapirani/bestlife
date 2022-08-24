@@ -1,14 +1,17 @@
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
 
 
-const ListItem = ({id,title,Icon, selectedItem}) => {
+const ListItem = ({id,title,Icon, selectedItem, setSelected}) => {
     return(
-        <ListItemButton>
+        <ListItemButton
+            selected={selectedItem === id}
+            onClick={()=>setSelected(id)}
+        >
 
             <ListItemIcon>
-                <Icon htmlColor='gold'/>
+                <Icon htmlColor={selectedItem === id ? 'gold' : '#d1d5db'}/>
             </ListItemIcon>
-            <ListItemText primaryTypographyProps={{style:{'fontFamily': 'anjoman', color:'gold'}}} primary={title} />
+            <ListItemText primaryTypographyProps={{style:{'fontFamily': 'anjoman', color: selectedItem === id ? 'gold' : ''}}} primary={title} />
 
             
         </ListItemButton>
