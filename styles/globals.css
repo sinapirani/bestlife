@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: anjoman;
+    src: url('../public/fonts/Anjoman-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: anjoman;
+    src: url('../public/fonts/Anjoman-Heavy.ttf');
+    font-weight: 900;
+}

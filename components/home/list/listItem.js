@@ -1,15 +1,15 @@
+import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
 
 
-const ListItem = ({id,text,icon}) => {
+const ListItem = ({id,title,Icon, selectedItem}) => {
     return(
         <ListItemButton>
 
-            <ListItemText>
-                {text}
-            </ListItemText>
             <ListItemIcon>
-                {icon}
+                <Icon htmlColor='gold'/>
             </ListItemIcon>
+            <ListItemText primaryTypographyProps={{style:{'fontFamily': 'anjoman', color:'gold'}}} primary={title} />
+
             
         </ListItemButton>
     )
