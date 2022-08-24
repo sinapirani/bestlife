@@ -1,11 +1,11 @@
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
 
 
-const ListItem = ({id,title,Icon, selectedItem, setSelected}) => {
+const ListItem = ({id,title,Icon, path, selectedItem, setSelectedItem}) => {
     return(
         <ListItemButton
             selected={selectedItem === id}
-            onClick={()=>setSelected(id)}
+            onClick={()=>setSelectedItem(id, path)}
         >
 
             <ListItemIcon>
