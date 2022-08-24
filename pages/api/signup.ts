@@ -3,6 +3,7 @@
 import validator from 'validator'
 import { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from "next-connect";
+import { MongoClient } from 'mongodb';
 
 interface userDataInterface {
     name: string,
@@ -21,7 +22,7 @@ const Handler = nextConnect<NextApiRequest,NextApiResponse>({
     },
 })
 
-Handler.post((req: NextApiRequest, res: NextApiResponse) => {
+Handler.post(async(req: NextApiRequest, res: NextApiResponse) => {
 
     const {name, username, email, password}: userDataInterface = req.body
 
@@ -41,8 +42,23 @@ Handler.post((req: NextApiRequest, res: NextApiResponse) => {
     if(!validator.isEmail(email))
         return res.status(400).send('email is invalid')
 
-    
-        
+    try{
+        const client = await MongoClient.connect(process.env.MONGO)
+        const db = client.db('bestlife')
+        await db.collection('users').insertOne({
+            name: name,
+            username: username,
+            email: email,
+            password: password,
+        })
+        return res.send('added')
+
+    }
+    catch(e){
+        console.log('err: ', e);
+        res.status(500).send('')
+    }
+
 
     res.send('ok')
 })
