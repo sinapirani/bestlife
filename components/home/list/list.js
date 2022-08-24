@@ -19,11 +19,17 @@ const NavList = () => {
     ]
 
     const [selected, setSelected] = useState(1)
-    useEffect(()=>{
-        const currentItem = listData.find(el => el.path === router.route)
-        setSelected(currentItem.id)
-    },[])
     const router = useRouter()
+
+    useEffect(()=>{
+        if(router.route != '/'){
+            console.log(router.route)
+            console.log('selected', selected);
+            const currentItem = listData.find(el => el.path === router.route)
+            console.log('current item', currentItem);
+            setSelected(currentItem.id)
+        }
+    },[])
     const setSelectedItem = (id, path) => {
         setSelected(id)
         router.push(path)
