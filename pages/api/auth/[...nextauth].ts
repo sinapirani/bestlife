@@ -1,6 +1,8 @@
 import { MongoClient } from "mongodb";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import bcrypt from 'bcrypt'
+import { userDataInterface } from "../signin";
 
 
 const options: NextAuthOptions = {
@@ -14,22 +16,38 @@ const options: NextAuthOptions = {
                 email: {label: 'email', type: 'email'},
                 password: {label: 'password', type: 'password'}
             },
-            authorize(credentials, req) {
+            async authorize(credentials) {
                 const {email,password} = credentials as {
                     email: string,
                     password: string
                 }
-
-                return (async () => {
-                    const client = await MongoClient.connect(process.env.MONGO)
-                    const db = client.db('bestlife')
-                    const user = await db.collection('users').findOne({email})
-                        if(!user) return null
-                })()
-
+                
+                const client = await MongoClient.connect(process.env.MONGO)
+                const db = client.db('bestlife')
+                const user = await db.collection<userDataInterface>('users').findOne({email})
+                    if(!user){
+                        console.log('usernot found');
+                        console.log('user', user);
+                        return null
+                    } 
+                const isPassValid = await bcrypt.compare(password, user.password)
+                    if(!isPassValid){
+                        console.log('pass invalid');
+                        return null
+                    }
+                const {username, email:userEmail} = user
+                return {username, userEmail}
             },
         })
-    ]
+    ],
+    callbacks:{
+        jwt({user,token}) {
+            return {...user, ...token}
+        },
+        session({token}){
+            return token
+        }
+    }
 }
 
 export default NextAuth(options)

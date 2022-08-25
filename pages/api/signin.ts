@@ -4,7 +4,7 @@ import nextConnect from "next-connect";
 import validator from 'validator'
 import bcrypt from 'bcrypt'
 
-interface userDataInterface {
+export interface userDataInterface {
     name: string,
     username: string,
     password: string,
