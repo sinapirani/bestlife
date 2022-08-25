@@ -4,6 +4,7 @@ import validator from 'validator'
 import { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from "next-connect";
 import { MongoClient } from 'mongodb';
+import bcrypt from 'bcrypt'
 
 interface userDataInterface {
     name: string,
@@ -42,25 +43,39 @@ Handler.post(async(req: NextApiRequest, res: NextApiResponse) => {
     if(!validator.isEmail(email))
         return res.status(400).send('email is invalid')
 
+    //check Password
+    if (!password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/))
+        return res.status(400).send('password must have 6-16 character and have number and at least one special character')
+
+
     try{
         const client = await MongoClient.connect(process.env.MONGO)
         const db = client.db('bestlife')
+
+        const isUsernameExist = await db.collection('users').findOne({username})
+        if(isUsernameExist)
+            return res.status(400).send('username is exist')
+
+            
+        const isEmailExist = await db.collection('users').findOne({ email })
+        if(isEmailExist)
+            return res.status(400).send('email is exist')
+
+        const hash = bcrypt.hashSync(password,10)
+
         await db.collection('users').insertOne({
             name: name,
             username: username,
             email: email,
-            password: password,
+            password: hash,
         })
         return res.send('added')
 
     }
     catch(e){
         console.log('err: ', e);
-        res.status(500).send('')
+        res.status(500).send('server Err!')
     }
-
-
-    res.send('ok')
 })
 
 
