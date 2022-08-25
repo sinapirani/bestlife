@@ -1,8 +1,34 @@
 import { HomeHead } from "./head/head"
 import NavList from "./list/list"
+import {useSession} from 'next-auth/react'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { changeUserBanStatus } from '../../redux/banuser'
+import { useDispatch, useSelector } from 'react-redux'
+
 
 
 export const Layout = ({children})=> {
+
+    const router = useRouter()
+    const {status} = useSession()
+    const dis = useDispatch()
+    
+    //if user authenticated the aplication go to dashboard
+    /*
+        if user unauthenticated and route is in '/auth' or it child noting happen!
+        else we ban user in redux and push the route to '/auth'
+        
+    */
+    useEffect(()=>{
+    if(status == 'authenticated') router.push('/dashboard')
+    if(status == 'unauthenticated'){
+        if(router.route.startsWith('/auth')) return 
+        dis(changeUserBanStatus(true))
+        router.push('/auth')
+    } 
+    },[status])
+
     return(
         <>
             <HomeHead/> 

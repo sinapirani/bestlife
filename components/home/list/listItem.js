@@ -1,9 +1,11 @@
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
 
 
-const ListItem = ({id,title,Icon, path, selectedItem, setSelectedItem}) => {
+const ListItem = ({disabled, id,title,Icon, path, selectedItem, setSelectedItem}) => {
     return(
         <ListItemButton
+            
+            disabled={disabled}
             selected={selectedItem === id}
             onClick={()=>setSelectedItem(id, path)}
         >
@@ -11,7 +13,7 @@ const ListItem = ({id,title,Icon, path, selectedItem, setSelectedItem}) => {
             <ListItemIcon>
                 <Icon htmlColor={selectedItem === id ? 'gold' : '#d1d5db'}/>
             </ListItemIcon>
-            <ListItemText primaryTypographyProps={{style:{'fontFamily': 'anjoman', color: selectedItem === id ? 'gold' : ''}}} primary={title} />
+            <p>{title}</p>
 
             
         </ListItemButton>
