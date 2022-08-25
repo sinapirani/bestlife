@@ -51,8 +51,10 @@ Handler.post(async(req,res) => {
         return res.status(400).send('username not exist')
     
     bcrypt.compare(password, user.password)
-        .then(e => {
-            console.log(e);
+        .then(isTrue => {
+            if(!isTrue)
+                return res.status(400).send('password not match')
+            return res.status(200).send('ok')
         })
 
 
