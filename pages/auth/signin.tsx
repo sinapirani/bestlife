@@ -2,7 +2,9 @@
 
 const SignIn = () => {
     return(
-        <p>sign in</p>
+        <div className="w-full h-screen">
+
+        </div>
     )
 }
 
