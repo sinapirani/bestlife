@@ -4,7 +4,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Layout } from '../components/home/layout';
-import {SessionProvider} from 'next-auth/react'
+import {SessionProvider} from 'next-auth/react' 
 
 
 function MyApp({ Component, pageProps:{session,...pageProps} }) {
