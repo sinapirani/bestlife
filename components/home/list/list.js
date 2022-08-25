@@ -15,7 +15,8 @@ const NavList = () => {
        {id: 2, title: 'توانایی‌ها', path: '/skills', icon: BoltIcon},
        {id: 3, title: 'منابع', path: '/sources', icon: GroupIcon},
        {id: 4, title: 'موانع', path: '/obstacles', icon: PestControlIcon},
-       {id: 5, title: 'اهداف', path: '/targets', icon: ModeStandbyIcon}
+       {id: 5, title: 'اهداف', path: '/targets', icon: ModeStandbyIcon},
+       {id: 6, title: 'حساب کاربری', path: '/auth', icon: ModeStandbyIcon},
     ]
 
     const [selected, setSelected] = useState(1)
