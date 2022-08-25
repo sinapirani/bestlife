@@ -41,11 +41,11 @@ const options: NextAuthOptions = {
         })
     ],
     callbacks:{
-        jwt({user,token}) {
+        async jwt({user,token}) {
             return {...user, ...token}
         },
-        session({token}){
-            return token
+        async session(params){
+            return params.token
         }
     }
 }
