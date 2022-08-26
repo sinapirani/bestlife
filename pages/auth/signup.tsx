@@ -51,7 +51,7 @@ const SignupPage: NextPage = () => {
 
     const formHandler = (e: React.FormEvent) => {
         e.preventDefault()
-        if (username.length > 20) return fireError('یوزرنیم باید کمتر از 20 کاراکتر باشد')
+        if (username.length > 20 || username.length < 5) return fireError('یوزرنیم باید بین 5 تا 20 کاراکتر باشد')
         if (!username.match(/^[a-z][a-z0-9]*$/i)) return fireError('یوزرنیم باید ترکیبی از عدد و حروف انگلیسی باشد و با عدد شروع نشود')
         if (name.length > 30) return fireError('نام باید کوتاه تر از 30 کاراکتر باشد')
         if (!password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)) return fireError(' پسورد باید بین 6 تا 6 کاراکتر و شامل حروف و عددانگلیسی و حروف ویژه($#%) باشد')
