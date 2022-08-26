@@ -8,10 +8,6 @@ interface stateInterface extends SnackbarOrigin {
     open: boolean,
     message: string
 }
-type TransitionProps = Omit<SlideProps, 'direction'>;
-const transition = (props: TransitionProps) => {
-    return <Slide {...props} direction='up' />
-}
 
 const Signup = () => {
 
