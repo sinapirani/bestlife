@@ -27,7 +27,7 @@ Handler.post(async(req: NextApiRequest, res: NextApiResponse) => {
 
     const {name, username, email, password}: userDataInterface = req.body
     const csrf = req.cookies['next-auth.csrf-token']
-    if(!csrf) return res.status(400).send()
+    if(!csrf) return res.status(400)
     
     
     //empty check

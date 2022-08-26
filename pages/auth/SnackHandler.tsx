@@ -22,12 +22,6 @@ const SnackHandler = (props) => {
 
     const { open, vertical, horizontal, message, bg, color } = state
 
-    useEffect(()=>{
-        console.table([['open',open],['vertical',vertical],['horizental',horizontal],['message',message]]);
-        console.log('open:',props.state.open);
-        
-    })
-
     return(
         <Snackbar
             anchorOrigin={{ vertical, horizontal }}

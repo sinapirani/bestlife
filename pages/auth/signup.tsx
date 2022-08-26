@@ -24,6 +24,7 @@ interface userInterface {
 
 const SignupPage: NextPage = () => {
 
+    const router = useRouter()
     const [state, setState] = useState<stateInterface>({
         message: '',
         open: false,
@@ -66,7 +67,8 @@ const SignupPage: NextPage = () => {
         axios.post('http://localhost:3000/api/signup',data)
         .then(res => {
             setLoading(false)
-            if (res.status == 204) return fireSuccess('با موفقیت انجام شد')
+            if (res.status == 204) fireSuccess('با موفقیت انجام شد')
+            router.push('/auth/signin')
         })
         .catch((e) => {
             setLoading(false)
