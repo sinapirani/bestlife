@@ -23,8 +23,8 @@ export const Layout = ({children})=> {
     useEffect(()=>{
     if(status == 'authenticated') router.push('/dashboard')
     if(status == 'unauthenticated'){
-        if(router.route.startsWith('/auth')) return 
         dis(changeUserBanStatus(true))
+        if(router.route.startsWith('/auth')) return 
         router.push('/auth')
     } 
     },[status])
