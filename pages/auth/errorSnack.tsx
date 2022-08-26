@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Slide, SlideProps, Snackbar, SnackbarContent } from "@mui/material"
 import { SnackbarOrigin } from "@mui/material"
 
@@ -18,7 +18,13 @@ const ErorrSnack = (props) => {
     const state: stateInterface = props.state
     const setState = props.setState
 
-    const { open, vertical, horizontal } = state
+    const { open, vertical, horizontal, message } = state
+
+    useEffect(()=>{
+        console.table([['open',open],['vertical',vertical],['horizental',horizontal],['message',message]]);
+        console.log('open:',props.state.open);
+        
+    })
 
     return(
         <Snackbar
@@ -30,7 +36,7 @@ const ErorrSnack = (props) => {
         >
             <SnackbarContent
                 sx={{ 'background': 'red', color: 'black' }}
-                message={state.message}
+                message={message}
             />
         </Snackbar>
     )

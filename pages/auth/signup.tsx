@@ -24,13 +24,12 @@ const Signup = () => {
     const { open, vertical, horizontal } = state
 
     const fireError = (text:string) => {
-        setState({ ...state, open: true })
-        setState({ ...state, message: text })
+        setState({ ...state, open: true, message: text })
     }
 
     const formHandler = (e: React.FormEvent) => {
         e.preventDefault()
-        fireError('fuck')
+        fireError('email is invalid')
     }
 
     const stateChanger = (value) => {
