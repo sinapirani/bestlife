@@ -40,10 +40,6 @@ const NavList = () => {
     }
 
 
-    // useEffect(()=>{
-    //     console.log(isBanned);
-    // },[isBanned])
-
     return(
         <List>
             {
