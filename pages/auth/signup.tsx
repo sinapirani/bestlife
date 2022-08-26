@@ -1,5 +1,6 @@
 
 import { Slide, SlideProps, SnackbarOrigin } from "@mui/material";
+import { NextPage } from "next";
 import React, { useState } from "react"
 import SnackHandler from "./SnackHandler";
 
@@ -18,7 +19,7 @@ interface userInterface {
     password: string
 }
 
-const Signup = () => {
+const SignupPage: NextPage = () => {
 
     const [state, setState] = useState<stateInterface>({
         message: '',
@@ -55,6 +56,7 @@ const Signup = () => {
         if (name.length > 30) return fireError('نام باید کوتاه تر از 30 کاراکتر باشد')
         if (!password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)) return fireError(' پسورد باید بین 6 تا 6 کاراکتر و شامل حروف و عددانگلیسی و حروف ویژه($#%) باشد')
 
+        
         return fireSuccess('با موفقیت انجام شد')
 
     }
@@ -82,4 +84,4 @@ const Signup = () => {
         </div>
     )
 }
-export default Signup
+export default SignupPage
