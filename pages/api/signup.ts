@@ -26,13 +26,16 @@ const Handler = nextConnect<NextApiRequest,NextApiResponse>({
 Handler.post(async(req: NextApiRequest, res: NextApiResponse) => {
 
     const {name, username, email, password}: userDataInterface = req.body
-
+    const csrf = req.cookies['next-auth.csrf-token']
+    console.log(csrf);
+    
+    
     //empty check
     if (!name || !username || !password || !email)
         return res.status(400).send('bad data')
 
     //check length
-    if (username.length > 20 || name.length > 30 || password.length > 20 || email.length > 100)
+    if (username.length > 20 || username.length < 5 || name.length > 30 || name.length < 2 || password.length > 20 || email.length > 100)
         return res.status(400).send('some data is too long')
 
     //check username string
@@ -54,12 +57,12 @@ Handler.post(async(req: NextApiRequest, res: NextApiResponse) => {
 
         const isUsernameExist = await db.collection('users').findOne({username})
         if(isUsernameExist)
-            return res.status(400).send('username is exist')
+            return res.status(409).send('username is exist')
 
             
         const isEmailExist = await db.collection('users').findOne({ email })
         if(isEmailExist)
-            return res.status(400).send('email is exist')
+            return res.status(410).send('email is exist')
 
         const hash = bcrypt.hashSync(password,10)
 
@@ -69,7 +72,7 @@ Handler.post(async(req: NextApiRequest, res: NextApiResponse) => {
             email: email,
             password: hash,
         })
-        return res.send('added')
+        return res.status(204).send('added')
 
     }
     catch(e){
