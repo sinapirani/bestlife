@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt'
 import { userDataInterface } from "../signin";
 
 
-const options: NextAuthOptions = {
+const options:NextAuthOptions = {
     session:{
         strategy:'jwt'
     },
@@ -13,8 +13,6 @@ const options: NextAuthOptions = {
         Credentials({
             type:'credentials',
             credentials:{
-                email: {label: 'email', type: 'email'},
-                password: {label: 'password', type: 'password'}
             },
             async authorize(credentials) {
                 const {email,password} = credentials as {
@@ -40,14 +38,20 @@ const options: NextAuthOptions = {
             },
         })
     ],
+    pages:{
+        signIn:'/auth/signin',
+        signOut: '/auth',
+        error: ''
+    },
     callbacks:{
+        async session({ session, token, user }) {
+            return session
+        },
         async jwt({user,token}) {
             return {...user, ...token}
-        },
-        async session(params){
-            return params.token
-        }
+        }    
     }
 }
+
 
 export default NextAuth(options)
