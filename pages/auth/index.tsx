@@ -1,8 +1,24 @@
+import { Router } from "@mui/icons-material"
+import { useSession } from "next-auth/react"
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
 
 
 const Auth = () => {
-    return(
+    
+    const {status} = useSession()
+    const router = useRouter()
+    const [allow, setAllow] = useState(false)
+
+    useEffect(()=>{
+        if(status == 'authenticated') 
+            router.push('/dashboard')
+        else
+            setAllow(true)
+    },[])
+
+    if(allow) return(
         <div className="w-full h-screen flex flex-col justify-center items-center ">
             <p className=" text-4xl font-extrabold">هنوز وارد نشدید!</p>
             <div className=" mt-7 flex justify-evenly gap-x-6">

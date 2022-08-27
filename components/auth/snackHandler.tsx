@@ -22,7 +22,7 @@ const SnackHandler = (props) => {
 
     const { open, vertical, horizontal, message, bg, color } = state
 
-    return(
+    return (
         <Snackbar
             anchorOrigin={{ vertical, horizontal }}
             open={open}
@@ -31,7 +31,7 @@ const SnackHandler = (props) => {
             onClose={() => setState({ ...state, open: false })}
         >
             <SnackbarContent
-                sx={{ 'background': bg, color}}
+                sx={{ 'background': bg, color }}
                 message={message}
             />
         </Snackbar>

@@ -5,7 +5,8 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react"
 import { ThreeCircles } from "react-loader-spinner";
-import SnackHandler from "./SnackHandler";
+import SnackHandler from "../../components/auth/snackHandler";
+
 
 
 interface stateInterface extends SnackbarOrigin {
