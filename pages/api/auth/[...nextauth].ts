@@ -2,7 +2,13 @@ import { MongoClient } from "mongodb";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt'
-import { userDataInterface } from "../signin";
+
+export interface userDataInterface {
+    name: string,
+    username: string,
+    password: string,
+    email: string
+}
 
 
 const options:NextAuthOptions = {
