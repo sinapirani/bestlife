@@ -52,7 +52,7 @@ const SigninPage: NextPage = () => {
 
     const [user, setUser] = useState<userInterface>({
         email: 'sinapiranidev@gmail.com',
-        password: ''
+        password: 'sdfdDw4$#$d'
     })
 
     const [loading, setLoading] = useState(false)

@@ -77,6 +77,7 @@ const SignupPage: NextPage = () => {
             setLoading(false)
             if (e.response.status == 410) return fireError('این ایمیل از قبل موجود است')
             if (e.response.status == 409) return fireError('این یوزرنیم از قبل موجود است')
+            return fireError('خطایی رخ داد')
         })
     }
 
