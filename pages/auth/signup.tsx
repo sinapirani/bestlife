@@ -68,8 +68,10 @@ const SignupPage: NextPage = () => {
         axios.post('http://localhost:3000/api/signup',data)
         .then(res => {
             setLoading(false)
-            if (res.status == 204) fireSuccess('با موفقیت انجام شد')
-            router.push('/auth/signin')
+            if (res.status == 204) fireSuccess('ثبت نام شما با موفقیت انجام شد. بصورت خودکار به صفحه ورود منتقل خواهید شد')
+            setTimeout(() => {
+                router.push('/auth/signin')
+            }, 4000);
         })
         .catch((e) => {
             setLoading(false)
