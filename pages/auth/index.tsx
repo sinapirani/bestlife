@@ -7,18 +7,16 @@ import { useEffect, useState } from "react"
 
 const Auth = () => {
     
-    const {status} = useSession()
     const router = useRouter()
     const [allow, setAllow] = useState(false)
-
-    useEffect(()=>{
-        if(status == 'authenticated') 
-            router.push('/dashboard')
-        else
-            setAllow(true)
-    },[])
-
-    if(allow) return(
+    
+    const {status} = useSession() 
+    if(status == 'loading') return <p>loading</p>
+    if(status == 'authenticated'){
+        router.push('/dashboard')
+        return ''
+    }
+    return(
         <div className="w-full h-screen flex flex-col justify-center items-center ">
             <p className=" text-4xl font-extrabold">هنوز وارد نشدید!</p>
             <div className=" mt-7 flex justify-evenly gap-x-6">

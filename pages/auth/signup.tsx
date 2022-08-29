@@ -2,6 +2,7 @@
 import { Slide, SlideProps, SnackbarOrigin } from "@mui/material";
 import axios from "axios";
 import { NextPage } from "next";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react"
 import { ThreeCircles } from "react-loader-spinner";
@@ -23,7 +24,7 @@ interface userInterface {
     password: string
 }
 
-const SignupPage: NextPage = () => {
+const SignupPage = () => {
 
     const router = useRouter()
     const [state, setState] = useState<stateInterface>({
@@ -85,7 +86,12 @@ const SignupPage: NextPage = () => {
         setState(value)
     }
 
-
+    const {status} = useSession() 
+    if(status == 'loading') return <p>loading</p>
+    if(status == 'authenticated'){
+        router.push('/dashboard')
+        return ''
+    }
     return(
         <div className="w-full h-screen flex justify-center items-center">
 
