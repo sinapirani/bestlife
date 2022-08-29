@@ -39,8 +39,8 @@ const options:NextAuthOptions = {
                         console.log('pass invalid');
                         return null
                     }
-                const {username, email:userEmail} = user
-                return {username, userEmail}
+                const {username, email:userEmail, name} = user
+                return {username, userEmail, name}
             },
         })
     ],
@@ -51,11 +51,8 @@ const options:NextAuthOptions = {
     },
     callbacks:{
         async session({ session, token, user }) {
-            return session
+            return {...session,...token}
         },
-        async jwt({user,token}) {
-            return {...user, ...token}
-        }    
     }
 }
 

@@ -4,7 +4,8 @@ import SkillsGrows from '../../components/dashboard/growth/skillsGrow'
 import React from 'react'
 import Obstacles from "../../components/dashboard/growth/obstacles"
 import {signIn, useSession} from 'next-auth/react'
-import { NextPage } from "next"
+import { GetServerSideProps, GetStaticProps, NextPage } from "next"
+import { getToken } from "next-auth/jwt"
 
 
 const Dashboard: NextPage = (): JSX.Element => {
@@ -20,6 +21,19 @@ const Dashboard: NextPage = (): JSX.Element => {
         </div>
     )
 }
+
+export const getServerSideProps: GetServerSideProps = async({req}) => {
+    
+    const token = await getToken({req})
+    console.log(token);
+    
+    return{
+        props:{
+            jwt: ''
+        }
+    }
+}
+
 
 
 export default Dashboard

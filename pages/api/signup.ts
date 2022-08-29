@@ -40,7 +40,7 @@ Handler.post(async(req: NextApiRequest, res: NextApiResponse) => {
 
     //check username string
     if(!validator.isAlphanumeric(username))
-        return res.status(400).send('username should have just letter and number')
+        return res.status(400).send('username should have just ENGLISH letter and number')
 
     //check email
     if(!validator.isEmail(email))
