@@ -76,7 +76,7 @@ const SkillsGrow = () => {
 
 
     return (
-        <div className=" gap-y-3 pt-6 flex flex-col justify-center items-center min-h-[240px] rounded-2xl overflow-hidden shadow-2xl shadow-[#1e2738] bg-[#1f283a] ">
+        <div className=" gap-y-3 pt-6 flex flex-col justify-center items-center min-h-[240px] rounded-2xl overflow-hidden shadow-2xl shadow-[#1e2738] bg-elementbg ">
 
             <div className="w-full flex flex-col items-start ">
                 <p className=" text-base text-gray-300 mr-2 font-extrabold self-start">شاخص توانایی‌ها</p>

@@ -81,7 +81,7 @@ const SigninPage = () => {
 
             <SnackHandler state={state} setState={stateChanger} />
 
-            <div className=" py-12 px-14 bg-[#1f283a] rounded-xl flex justify-center items-center">
+            <div className=" py-12 px-14 bg-elementbg rounded-xl flex justify-center items-center">
                 <form onSubmit={formHandler} className=" gap-y-1 flex flex-col justify-center items-center">
                     <input autoComplete="username" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUser({ ...user, email: e.currentTarget.value })} className=" w-11/12 rounded-md outline-none bg-[#35435e] px-4 py-2" type="email" placeholder='ایمیل' />
                     <input autoComplete="on" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUser({ ...user, password: e.currentTarget.value })} className=" w-11/12 mb-4 rounded-md outline-none bg-[#35435e] px-4 py-2" type="password" placeholder="پسورد" />
