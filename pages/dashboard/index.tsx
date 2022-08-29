@@ -6,17 +6,21 @@ import Obstacles from "../../components/dashboard/growth/obstacles"
 import {signIn, useSession} from 'next-auth/react'
 import { GetServerSideProps, GetStaticProps, NextPage } from "next"
 import { getToken } from "next-auth/jwt"
+import EmptyAlert from "../../components/dashboard/emptyAlert"
 
 
 const Dashboard: NextPage = (): JSX.Element => {
 
 
     return (
-        <div className="w-full gap-x-5 flex justify-center items-start min-h-screen pt-6  ">
+        <div className="w-full gap-x-5 flex flex-col justify-start items-center min-h-screen pt-6  ">
             
-            <SkillsGrows/>
-            <SourcesGrows/>
-            <Obstacles/>
+            <div className="w-full gap-x-5 flex justify-center items-start">
+                <SkillsGrows/>
+                <SourcesGrows/>
+                <Obstacles/>
+            </div>
+            <EmptyAlert/>
 
         </div>
     )
